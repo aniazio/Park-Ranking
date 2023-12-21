@@ -1,0 +1,27 @@
+'dolina Służewiecka' 'Mokotów' 5 52.169550 21.036075
+'Górczewska' 'Bemowo' 8 52.233260 20.904783
+'Hasanka' 'Ursus' 8 52.194428 20.874966
+'Hassów' 'Ursus' 3 52.196008 20.873607
+'Jerzego Jarnuszkiewicza (skwer)' 'Bielany' 8 52.274111 20.950968
+'Kaskada' 'Żoliborz' 5 52.273534 20.970723
+'Kombatantów' 'Włochy' 6.5 52.207241 20.911919
+'Kopiec Powstania Warszawskiego' 'Mokotów' 9 52.210841 21.056072
+'Lasek Brzozowy' 'Ursynów' 1 52.141822 21.057657
+'nad stawem Służewieckim' 'Mokotów' 7 52.168978 21.014018
+'Ogrody Kosmosu' 'Włochy' 8 52.209746 20.921822
+'Olszyna' 'Bielany' 5 52.270323 20.958298
+'Polińskiego' 'Praga Południe' 5.5 52.249214 21.090064
+'Promenada' 'Mokotów' 7.5 52.203914 21.030682
+'przy Bażantarni' 'Ursynów' 9 52.136348 21.064395
+'przy ulicy Bartłomieja' 'Mokotów' 3 52.169172 21.005637
+'przy ulicy Śniardwy' 'Mokotów' 4 52.173246 21.007847
+'Sady Żoliborskie' 'Żoliborz' 7 52.267390 20.971988
+'Sielecki' 'Mokotów' 6 52.199137 21.040769
+'Stawy Koziorożca' 'Włochy' 5.5 52.209314 20.911349
+'Świętokrzyski' 'Śródmieście' 6 52.233906 21.005417
+'Szustrów' 'Mokotów' 4 52.204011 21.025578
+'Wyględów (Żołnierzy radzieckich)' 'Mokotów' 6 52.202638 20.987797
+'Zasława Malickiego' 'Ochota' 7 52.203390 20.979724
+'Zbigniewa Herberta' 'Bielany' 4 52.273382 20.955349
+'ze Stawami Cietrzewia' 'Włochy' 8 52.200515 20.923219
+'Żołnierzy "Żywiciela"' 'Żoliborz' 3 52.268603 20.977746
