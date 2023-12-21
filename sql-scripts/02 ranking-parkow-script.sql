@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS `park`;
 
 CREATE TABLE `park` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name`varchar(100) DEFAULT NULL,
+  `name`varchar(100) DEFAULT NULL UNIQUE,
   `district` varchar(50) DEFAULT NULL,
   `rating` double DEFAULT 5,
   `latitude` double DEFAULT 52.2278197,
