@@ -1,6 +1,6 @@
 # Park Ranking API #
 
-This API was design to read and modify a ranking of parks in Warsaw. After an installation and a start of a program it is available on URL: http://localhost:8080/parks
+This API was design to read and modify a ranking of parks in Warsaw. After an installation and starting a program, API is available on URL: http://localhost:8080/parks
 
 This API was created with use of Chad Darby's tutorial on udemy.com, but it is significantly changed in comparison to tutorial's version. 
 
