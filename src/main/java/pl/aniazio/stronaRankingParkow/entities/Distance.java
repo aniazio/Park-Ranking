@@ -25,6 +25,7 @@ public class Distance {
     @MapsId
     @JoinColumn(name="park_id")
     @JsonIgnore
+    @ToString.Exclude
     private Park park;
 
 }

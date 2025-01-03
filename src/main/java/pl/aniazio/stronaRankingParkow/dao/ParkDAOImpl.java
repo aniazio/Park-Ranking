@@ -26,7 +26,7 @@ public class ParkDAOImpl implements ParkDAO {
     @Override
     public List<Park> getAllOrdered(double maxDist, double weight) {
         TypedQuery<Park> query = entityManager.createQuery("from Park order by " +
-                "((10.0 - rating) * (1.0 - :theWeight) + (10.0 * distance.dist / :max) * :theWeight) asc", Park.class);
+                "((10.0 - rating) * (1.0 - :theWeight) + (10.0 * distance.dist / :max) * :theWeight) asc, distance.dist asc", Park.class);
         query.setParameter("theWeight", weight);
         query.setParameter("max", maxDist);
         return query.getResultList();

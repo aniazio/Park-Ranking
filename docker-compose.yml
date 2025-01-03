@@ -1,0 +1,18 @@
+services:
+  mysql-db:
+    image: mysql:9.1
+    restart: always
+    container_name: mysql-data
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./sql/mysql/db:/var/lib/mysql
+      - ./sql/scripts/01-user-script.sql:/docker-entrypoint-initdb.d/01-user-script.sql
+      - ./sql/scripts/02-ranking-parkow-script.sql:/docker-entrypoint-initdb.d/02-ranking-parkow-script.sql
+    user:
+      mysql
+volumes:
+  mysql-data:
+    driver: local

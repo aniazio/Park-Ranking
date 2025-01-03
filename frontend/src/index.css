@@ -1,0 +1,12 @@
+:root {
+  --dark: #341e06;
+  --second: #208f25;
+  --first: #25701e;
+  --bright: #c9b58d;
+}
+
+body {
+  background-color: var(--first);
+  font-size: 25px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}

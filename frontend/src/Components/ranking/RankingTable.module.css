@@ -1,0 +1,22 @@
+table {
+  width: 70%;
+  border-collapse: collapse;
+  border: 4px solid;
+  border-color: var(--dark);
+  margin: auto;
+  margin-top: 10px;
+}
+
+th,
+td {
+  border: 1px solid;
+  border-color: var(--dark);
+  line-height: 1.4;
+  text-align: center;
+}
+
+thead {
+  color: var(--dark);
+  background-color: var(--second);
+  border: 2px solid;
+}

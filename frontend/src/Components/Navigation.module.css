@@ -1,0 +1,30 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  margin-left: auto;
+  padding: 0;
+  width: fit-content;
+  overflow: hidden;
+  background-color: var(--second);
+  border-radius: 20px;
+}
+
+li {
+  display: inline;
+  float: right;
+  font-size: 30px;
+  width: fit-content;
+}
+
+li a {
+  display: block;
+  color: var(--dark);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: var(--bright);
+}
