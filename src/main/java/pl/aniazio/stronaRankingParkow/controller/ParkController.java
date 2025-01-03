@@ -1,4 +1,4 @@
-package pl.aniazio.stronaRankingParkow.restApi;
+package pl.aniazio.stronaRankingParkow.controller;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/parks")
+@CrossOrigin(origins = "http://localhost:5173")
 public class ParkController {
 
     ParkService parkService;

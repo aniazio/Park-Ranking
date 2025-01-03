@@ -13,7 +13,6 @@ services:
       - ./sql/scripts/02-ranking-parkow-script.sql:/docker-entrypoint-initdb.d/02-ranking-parkow-script.sql
     user:
       mysql
-
 volumes:
   mysql-data:
     driver: local
