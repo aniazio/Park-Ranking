@@ -1,18 +1,16 @@
-# Park Ranking API #
+# Park Ranking API
 
 This API was design to read and modify a ranking of parks in Warsaw. After an installation and starting a program, API is available on URL: http://localhost:8080/parks
 
-This API was created with use of Chad Darby's tutorial on udemy.com, but it is significantly changed in comparison to tutorial's version. 
+## Endpoints
 
-## Endpoints ##
-
-### Get a list of parks ###
+### Get a list of parks
 
 GET ""
 
 Returns a list of parks ordered by id.
 
-### Get a ranking of parks ###
+### Get a ranking of parks
 
 GET "/ranking"
 
@@ -29,14 +27,14 @@ In the ranking the localization is taken into the account. The distance between 
 This is a weighted arithmetic mean, where "weight" stands for weight of distance component. In the formula "rating" is a double between 0 and 10. "distance" is a distance between client's localization and park. 
 "max" is the maximum distance, which is in a table. The number 10 is a scalar. The lower score is better.
 
-### Get a park ###
+### Get a park
 
 GET "/{id}"
 
 Print an information about park of given id.
 
 
-### Add new park ###
+### Add new park
 
 POST ""
 
@@ -47,15 +45,15 @@ Allow to add new parks to the ranking. Response body will contain list of parks 
 - district
 - rating
 - latitude (default value: 52.2278197)
-- logitude (default value: 21.0028638)
+- longitude (default value: 21.0028638)
 
-### Update a park ###
+### Update a park
 
 PATCH "{id}"
 
 Allow to update an existing park.
 
-### Delete a park ###
+### Delete a park
 
 DELETE "{id}"
 

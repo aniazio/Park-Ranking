@@ -1,0 +1,35 @@
+h5 {
+  text-align: center;
+  letter-spacing: 5px;
+  color: var(--bright);
+}
+
+form {
+  padding-bottom: 20px;
+  display: grid;
+  width: 400px;
+  margin: auto;
+}
+
+label {
+  text-align: center;
+}
+
+input {
+  margin-bottom: 20px;
+  background-color: var(--second);
+  border-style: solid;
+  border-color: var(--dark);
+  font-size: large;
+  text-align: center;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px var(--second) inset !important;
+}
+
+button {
+  background-color: var(--second);
+  font-size: large;
+  font-weight: bold;
+}
