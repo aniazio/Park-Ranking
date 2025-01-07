@@ -1,5 +1,6 @@
 package pl.aniazio.stronaRankingParkow.controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
 import pl.aniazio.stronaRankingParkow.entities.Park;
@@ -10,14 +11,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/parks")
 @CrossOrigin(origins = "http://localhost:5173")
+@AllArgsConstructor
 public class ParkController {
 
-    ParkService parkService;
-
-    @Autowired
-    public ParkController(ParkService parkService) {
-        this.parkService = parkService;
-    }
+    private final ParkService parkService;
 
     @GetMapping("")
     @ResponseBody

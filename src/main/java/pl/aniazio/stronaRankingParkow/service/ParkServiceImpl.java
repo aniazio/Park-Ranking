@@ -1,5 +1,6 @@
 package pl.aniazio.stronaRankingParkow.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,18 +10,13 @@ import pl.aniazio.stronaRankingParkow.entities.*;
 import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 public class ParkServiceImpl implements ParkService {
 
-    ParkDAO parkDAO;
-    DistanceDAO distanceDAO;
-    Localization localization;
-
-    @Autowired
-    public ParkServiceImpl(ParkDAO parkDAO, DistanceDAO distanceDAO) {
-        this.parkDAO = parkDAO;
-        this.distanceDAO = distanceDAO;
-        this.localization = new Localization();
-    }
+    private final ParkDAO parkDAO;
+    private final DistanceDAO distanceDAO;
+    private final FeatureDAO featureDAO;
+  private final Localization localization = new Localization();
 
     @Override
     public List<Park> getAll() {
@@ -115,6 +111,7 @@ public class ParkServiceImpl implements ParkService {
     public void delete(int id) {
         Park park = getById(id);
         parkDAO.delete(park);
+        featureDAO.deleteWhereParkId(id);
     }
 
 }

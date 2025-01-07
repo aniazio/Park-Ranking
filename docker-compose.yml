@@ -8,9 +8,8 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
     volumes:
-      - ./sql/mysql/db:/var/lib/mysql
-      - ./sql/scripts/01-user-script.sql:/docker-entrypoint-initdb.d/01-user-script.sql
-      - ./sql/scripts/02-ranking-parkow-script.sql:/docker-entrypoint-initdb.d/02-ranking-parkow-script.sql
+      - mysql-data:/var/lib/mysql
+      - ./sql/scripts:/docker-entrypoint-initdb.d
     user:
       mysql
 volumes:

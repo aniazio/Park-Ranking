@@ -1,6 +1,7 @@
 package pl.aniazio.stronaRankingParkow.dao;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.aniazio.stronaRankingParkow.entities.Park;
@@ -8,14 +9,10 @@ import pl.aniazio.stronaRankingParkow.entities.Park;
 import java.util.List;
 
 @Repository
+@AllArgsConstructor
 public class ParkDAOImpl implements ParkDAO {
 
-    private EntityManager entityManager;
-
-    @Autowired
-    public ParkDAOImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+    private final EntityManager entityManager;
 
     @Override
     public List<Park> getAll() {
