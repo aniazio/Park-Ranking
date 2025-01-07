@@ -36,4 +36,13 @@ public class Park {
     @OneToOne(mappedBy = "park", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private Distance distance;
+
+    public Park(Park park) {
+        id = park.getId();
+        name = park.getName();
+        district = park.getDistrict();
+        rating = park.getRating();
+        latitude = park.getLatitude();
+        longitude = park.getLongitude();
+    }
 }

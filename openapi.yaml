@@ -10,6 +10,8 @@ paths:
     get:
       summary: get a list of parks ordered by id
       operationId: getAll
+      tags:
+        - Park
       responses:
         "200":
           description: Ok.
@@ -22,6 +24,8 @@ paths:
     post:
       summary: add new park to the ranking
       operationId: add
+      tags:
+        - Park
       requestBody:
         content:
           application/json:
@@ -36,6 +40,8 @@ paths:
       summary: get a list of parks ordered by the score
       description: "In the ranking the localization is taken into the account. The distance between client's localization and park is calculated, and the score of a park is given by the formula: (10 - rating) * (1.0 - weight) + (10 * distance / max) * weight. This is a weighted arithmetic mean, where 'weight' stands for weight of distance component. In the formula 'rating' is a double between 0 and 10. 'distance' is a distance between client's localization and park. 'max' is the maximum distance, which is in a table. The number 10 is a scalar. The lower score is better."
       operationId: getRanking
+      tags:
+        - Park
       parameters:
         - $ref: "#/components/parameters/latitudeQueryParam"
         - $ref: "#/components/parameters/longitudeQueryParam"
@@ -53,6 +59,8 @@ paths:
     get:
       summary: get information obout a park with given id
       operationId: getById
+      tags:
+        - Park
       parameters:
         - $ref: "#/components/parameters/idPathParam"
       responses:
@@ -65,6 +73,8 @@ paths:
     patch:
       summary: update an existing park with specified id
       operationId: partiallyUpdate
+      tags:
+        - Park
       parameters:
         - $ref: "#/components/parameters/idPathParam"
       requestBody:
@@ -78,6 +88,8 @@ paths:
     delete:
       summary: delete an existing park with specified id
       operationId: delete
+      tags:
+        - Park
       parameters:
         - $ref: "#/components/parameters/idPathParam"
       responses:
@@ -88,6 +100,8 @@ paths:
     get:
       summary: get pluses and minuses of certain park
       operationId: getFeatures
+      tags:
+        - Feature
       parameters:
         - $ref: "#/components/parameters/idPathParam"
       responses:
@@ -100,6 +114,8 @@ paths:
     post:
       summary: save pluses and minuses of new park
       operationId: saveFeatures
+      tags:
+        - Feature
       parameters:
         - $ref: "#/components/parameters/idPathParam"
       requestBody:
@@ -113,6 +129,8 @@ paths:
     put:
       summary: update pluses and minuses of the park
       operationId: updateFeatures
+      tags:
+        - Feature
       parameters:
         - $ref: "#/components/parameters/idPathParam"
       requestBody:
@@ -123,6 +141,51 @@ paths:
       responses:
         "200":
           description: Ok.
+
+  /detailed:
+    post:
+      summary: combained saving of a park and its features
+      operationId: saveParkDetailed
+      tags:
+        - ParkDetailed
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParkDetailed'
+      responses:
+        "200":
+          description: Ok.
+  /detailed/{id}:
+    put:
+      summary: combained updating of a park and its features
+      operationId: updateParkDetailed
+      tags:
+        - ParkDetailed
+      parameters:
+        - $ref: "#/components/parameters/idPathParam"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParkDetailed'
+      responses:
+        "200":
+          description: Ok.
+    get:
+      summary: get combained park info and its features
+      operationId: getParkDetailed
+      tags:
+        - ParkDetailed
+      parameters:
+        - $ref: "#/components/parameters/idPathParam"
+      responses:
+        "200":
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ParkDetailed"
 
 
 components:
@@ -176,6 +239,19 @@ components:
         description:
           type: string
           example: "plac zabaw"
+    ParkDetailed:
+      allOf:
+        - $ref: "#/components/schemas/Park"
+        - type: object
+          properties:
+            pluses:
+              type: array
+              items:
+                $ref: "#/components/schemas/Feature"
+            minuses:
+              type: array
+              items:
+                $ref: "#/components/schemas/Feature"
   parameters:
     latitudeQueryParam:
       name: latitude

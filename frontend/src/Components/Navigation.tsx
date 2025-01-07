@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import "./Navigation.module.css";
 
 function Navigation() {
@@ -5,10 +6,10 @@ function Navigation() {
     <nav>
       <ul>
         <li>
-          <a href="#">Dodaj nowy park</a>
+          <NavLink to="new">Dodaj nowy park</NavLink>
         </li>
         <li>
-          <a href="#">Ranking</a>
+          <NavLink to="">Ranking</NavLink>
         </li>
       </ul>
     </nav>

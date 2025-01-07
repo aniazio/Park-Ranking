@@ -15,8 +15,6 @@ import java.util.Map;
 public class FeatureServiceImpl implements FeatureService {
 
     private final FeatureDAO featureDAO;
-    private final String positive = "pluses";
-    private final String negative = "minuses";
 
 
     @Override

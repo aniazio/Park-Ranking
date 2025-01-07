@@ -2,7 +2,8 @@ import { Park } from "../../types";
 import { useEffect, useState } from "react";
 import "./RankingTable.module.css";
 import { SearchingInput } from "../../types";
-import { Oval } from "react-loader-spinner";
+import Waiting from "../commons/Waiting";
+import { Link } from "react-router-dom";
 
 function RankingTable({ searchingInput }: { searchingInput: SearchingInput }) {
   const [isFetching, setIsFetching] = useState<boolean>(false);
@@ -33,16 +34,7 @@ function RankingTable({ searchingInput }: { searchingInput: SearchingInput }) {
 
   return (
     <>
-      {!isFetching || (
-        <Oval
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="oval-loading"
-          wrapperStyle={{ margin: "auto", width: "fit-content" }}
-          wrapperClass=""
-        />
-      )}
+      {!isFetching || <Waiting />}
       {isFetching || (
         <table>
           <thead>
@@ -56,7 +48,9 @@ function RankingTable({ searchingInput }: { searchingInput: SearchingInput }) {
           <tbody>
             {parks.map((park) => (
               <tr key={park.id.toString()}>
-                <td>{park.name}</td>
+                <td>
+                  <Link to={"/" + park.id.toString()}>{park.name}</Link>
+                </td>
                 <td>{park.district}</td>
                 <td>{park.rating.toString()}</td>
                 <td>{park.distance.dist.toFixed(2).toString()} km</td>
