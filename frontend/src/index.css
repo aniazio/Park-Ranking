@@ -27,3 +27,12 @@ main {
   width: 90%;
   margin: 0;
 }
+
+li {
+  margin-bottom: 5px;
+}
+
+.delete {
+  margin-left: 20px;
+  background-color: lightcoral;
+}

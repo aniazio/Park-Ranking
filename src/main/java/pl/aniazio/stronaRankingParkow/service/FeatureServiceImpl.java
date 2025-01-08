@@ -7,6 +7,7 @@ import pl.aniazio.stronaRankingParkow.entities.Feature;
 import pl.aniazio.stronaRankingParkow.entities.FeaturePK;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -22,14 +23,25 @@ public class FeatureServiceImpl implements FeatureService {
         List<Feature> pluses = features.get(positive);
         List<Feature> minuses = features.get(negative);
 
-        pluses.forEach(feature -> {
-            feature.setPositive(true);
-            feature.setParkId(parkId);
-        });
-        minuses.forEach(feature -> {
+       Iterator<Feature> featureIterator = pluses.iterator();
+       int idx = 0;
+       while(featureIterator.hasNext()) {
+           Feature feature = featureIterator.next();
+           feature.setId(idx);
+           idx++;
+           feature.setPositive(true);
+           feature.setParkId(parkId);
+       }
+
+        featureIterator = minuses.iterator();
+        idx = 0;
+        while(featureIterator.hasNext()) {
+            Feature feature = featureIterator.next();
+            feature.setId(idx);
+            idx++;
             feature.setPositive(false);
             feature.setParkId(parkId);
-        });
+        }
 
         featureDAO.saveAll(pluses);
         featureDAO.saveAll(minuses);
@@ -54,6 +66,11 @@ public class FeatureServiceImpl implements FeatureService {
         result.put(negative, minuses);
 
         return result;
+    }
+
+    @Override
+    public void deleteFeatures(int id) {
+        featureDAO.deleteWhereParkId(id);
     }
 
 }

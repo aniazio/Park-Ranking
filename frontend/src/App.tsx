@@ -12,7 +12,10 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <RankingSite /> },
       { path: "/:id", element: <ParkSite /> },
-      { path: "/new", element: <ParkForm park={null} /> },
+      {
+        path: "/new",
+        element: <ParkForm park={null} setEditing={(value: boolean) => {}} />,
+      },
     ],
   },
 ]);

@@ -24,7 +24,3 @@ input {
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px var(--second) inset !important;
 }
-
-button {
-  margin-top: 40px;
-}

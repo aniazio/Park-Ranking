@@ -15,4 +15,5 @@ public interface FeatureService {
 
     Map<String, List<Feature>> getFeatures(int parkId);
 
+    void deleteFeatures(int id);
 }

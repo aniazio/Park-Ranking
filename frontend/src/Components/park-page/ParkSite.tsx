@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { ParkDetailed } from "../../types";
 import Waiting from "../commons/Waiting";
 import ParkForm from "./ParkForm";
 
 function ParkSite() {
   const params = useParams();
+  const navigate = useNavigate();
+  const deleteButton = useRef<HTMLButtonElement | null>(null);
 
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [park, setPark] = useState<ParkDetailed | null>(null);
@@ -24,6 +26,22 @@ function ParkSite() {
 
     fetchPark();
   }, []);
+
+  function handleDelete() {
+    deleteButton.current?.setAttribute("disabled", "true");
+
+    let url = "http://localhost:8080/parks/detailed/" + params.id;
+
+    fetch(url, {
+      method: "DELETE",
+    })
+      .then(() => {
+        navigate("/");
+      })
+      .finally(() => {
+        deleteButton.current?.removeAttribute("disabled");
+      });
+  }
 
   return (
     <>
@@ -49,10 +67,15 @@ function ParkSite() {
               <li key={minus.id.toString()}>{minus.description}</li>
             ))}
           </ul>
-          <button onClick={() => setIsEditing(true)}>Edit</button>
+          <button onClick={() => setIsEditing(true)}>Edytuj</button>
+          <button className="delete" onClick={handleDelete} ref={deleteButton}>
+            Usuń
+          </button>
         </>
       )}
-      {isFetching || !isEditing || <ParkForm park={park} />}
+      {isFetching || !isEditing || (
+        <ParkForm park={park} setEditing={setIsEditing} />
+      )}
     </>
   );
 }

@@ -7,5 +7,7 @@ public interface ParkDetailedService {
 
     void updateParkDetailed(int id, ParkDetailed parkDetailed);
 
-    void saveParkDetailed(ParkDetailed parkDetailed);
+    ParkDetailed saveParkDetailed(ParkDetailed parkDetailed);
+
+    void deleteParkDetailed(int id);
 }

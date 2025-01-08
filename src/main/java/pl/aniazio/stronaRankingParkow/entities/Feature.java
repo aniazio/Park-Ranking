@@ -23,7 +23,11 @@ public class Feature {
 
     private String description;
 
-    public void setParkId(int parkId) {
+  public Feature(String description) {
+    this.description = description;
+  }
+
+  public void setParkId(int parkId) {
         this.pk.setParkId(parkId);
     }
 

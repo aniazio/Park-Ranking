@@ -22,13 +22,20 @@ public class ParkDetailedController {
     }
 
     @PutMapping("/{id}")
-    public void updateParkDetailed(@PathVariable int id, @RequestBody ParkDetailed parkDetailed) {
+    public int updateParkDetailed(@PathVariable int id, @RequestBody ParkDetailed parkDetailed) {
         service.updateParkDetailed(id, parkDetailed);
+        return id;
     }
 
     @PostMapping()
-    public void saveParkDetailed(@RequestBody ParkDetailed parkDetailed) {
-        service.saveParkDetailed(parkDetailed);
+    public int saveParkDetailed(@RequestBody ParkDetailed parkDetailed) {
+        ParkDetailed returned = service.saveParkDetailed(parkDetailed);
+        return returned.getId();
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteParkDetailed(@PathVariable int id) {
+        service.deleteParkDetailed(id);
     }
 
 

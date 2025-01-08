@@ -38,12 +38,20 @@ public class ParkDetailedServiceImpl implements ParkDetailedService {
     }
 
     @Override
-    public void saveParkDetailed(ParkDetailed parkDetailed) {
+    public ParkDetailed saveParkDetailed(ParkDetailed parkDetailed) {
         Park park = new Park(parkDetailed);
         park = parkService.save(park);
         Map<String, List<Feature>> features = new HashMap<>();
         features.put(FeatureService.positive, parkDetailed.getPluses());
         features.put(FeatureService.negative, parkDetailed.getMinuses());
         featureService.saveFeatures(park.getId(), features);
+        parkDetailed.setId(park.getId());
+        return parkDetailed;
+    }
+
+    @Override
+    public void deleteParkDetailed(int id) {
+        featureService.deleteFeatures(id);
+        parkService.delete(id);
     }
 }

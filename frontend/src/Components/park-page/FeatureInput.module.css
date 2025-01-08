@@ -1,0 +1,43 @@
+label {
+  text-align: center;
+  margin: auto;
+}
+
+.features {
+  align-items: center;
+  justify-content: center;
+  display: grid;
+}
+
+form li {
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
+
+form li input {
+  margin-right: 10px;
+  margin-left: auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  background-color: var(--second);
+  border-style: solid;
+  border-color: var(--dark);
+  font-size: large;
+  text-align: center;
+  width: 450px;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px var(--second) inset !important;
+}
+
+form li button {
+  margin-top: 10px;
+  width: 100px;
+}
+
+form button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

@@ -1,4 +1,4 @@
-ul {
+nav ul {
   list-style-type: none;
   margin: 0;
   margin-left: auto;
@@ -9,14 +9,15 @@ ul {
   border-radius: 20px;
 }
 
-li {
+nav li {
   display: inline;
   float: right;
   font-size: 30px;
   width: fit-content;
+  margin-bottom: 0px;
 }
 
-li a {
+nav li a {
   display: block;
   color: var(--dark);
   text-align: center;
@@ -25,6 +26,6 @@ li a {
 }
 
 /* Change the link color to #111 (black) on hover */
-li a:hover {
+nav li a:hover {
   background-color: var(--bright);
 }

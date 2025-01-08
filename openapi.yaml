@@ -95,53 +95,6 @@ paths:
       responses:
         "200":
           description: Ok.
-
-  /{id}/features:
-    get:
-      summary: get pluses and minuses of certain park
-      operationId: getFeatures
-      tags:
-        - Feature
-      parameters:
-        - $ref: "#/components/parameters/idPathParam"
-      responses:
-        "200":
-          description: Ok.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/FeatureMap"
-    post:
-      summary: save pluses and minuses of new park
-      operationId: saveFeatures
-      tags:
-        - Feature
-      parameters:
-        - $ref: "#/components/parameters/idPathParam"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/FeatureMap'
-      responses:
-        "200":
-          description: Ok.
-    put:
-      summary: update pluses and minuses of the park
-      operationId: updateFeatures
-      tags:
-        - Feature
-      parameters:
-        - $ref: "#/components/parameters/idPathParam"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/FeatureMap'
-      responses:
-        "200":
-          description: Ok.
-
   /detailed:
     post:
       summary: combained saving of a park and its features
@@ -186,7 +139,16 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ParkDetailed"
-
+    delete:
+      summary: delete an existing park with its features
+      operationId: deleteParkDetailed
+      tags:
+        - ParkDetailed
+      parameters:
+        - $ref: "#/components/parameters/idPathParam"
+      responses:
+        "200":
+          description: Ok.
 
 components:
   schemas:
