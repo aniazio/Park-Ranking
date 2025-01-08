@@ -4,6 +4,9 @@ import Input from "./Input";
 import "./ParkForm.module.css";
 import FeaturesInput from "./FeaturesInput";
 import { useNavigate } from "react-router-dom";
+import { LatLngTuple } from "leaflet";
+import { defaultLocation } from "../commons/Map";
+import Map from "../commons/Map";
 
 type stateInputsCount = {
   pluses: number;
@@ -21,6 +24,7 @@ function ParkForm({
 }) {
   const navigate = useNavigate();
   const submitButton = useRef<HTMLButtonElement | null>(null);
+  const [position, setPosition] = useState<LatLngTuple>(defaultLocation);
   const [inputsCount, setInputsCount] = useState<stateInputsCount>({
     pluses: park ? park.pluses.length + 1 : 1,
     minuses: park ? park.minuses.length + 1 : 1,
@@ -48,6 +52,8 @@ function ParkForm({
       .filter((elem) => elem !== "");
 
     const data = Object.assign(Object.fromEntries(fd.entries()), {
+      latitude: position[0],
+      longitude: position[1],
       pluses: plusesFiltered,
       minuses: minusesFiltered,
     });
@@ -100,8 +106,9 @@ function ParkForm({
       <Input namePl="Nazwa parku" nameEng="name" park={park} />
       <Input namePl="Dzielnica" nameEng="district" park={park} />
       <Input namePl="Ocena" nameEng="rating" park={park} />
-      <Input namePl="Szerokość geograficzna" nameEng="latitude" park={park} />
-      <Input namePl="Długość geograficzna" nameEng="longitude" park={park} />
+      {/* <Input namePl="Szerokość geograficzna" nameEng="latitude" park={park} />
+      <Input namePl="Długość geograficzna" nameEng="longitude" park={park} /> */}
+      <Map markerPosition={position} setMarkerPosition={setPosition} />
       <FeaturesInput
         isPositive={true}
         inputsCount={inputsCount.pluses}
