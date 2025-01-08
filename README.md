@@ -20,8 +20,8 @@ At the end, when you close the application, run `docker-compose down` or, if you
 
 ### Page with park details
 
-![ranking park.png](screenshots%2Franking%20park.png)
+![ranking-park.png](screenshots%2Franking-park.png)
 
 ### Form for adding/editing park details
 
-![ranking form.png](screenshots%2Franking%20form.png)
+![ranking-form.png](screenshots%2Franking-form.png)

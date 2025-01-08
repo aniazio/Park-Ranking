@@ -24,7 +24,9 @@ function ParkForm({
 }) {
   const navigate = useNavigate();
   const submitButton = useRef<HTMLButtonElement | null>(null);
-  const [position, setPosition] = useState<LatLngTuple>(defaultLocation);
+  const [position, setPosition] = useState<LatLngTuple>(
+    park ? [park.latitude, park.longitude] : defaultLocation
+  );
   const [inputsCount, setInputsCount] = useState<stateInputsCount>({
     pluses: park ? park.pluses.length + 1 : 1,
     minuses: park ? park.minuses.length + 1 : 1,

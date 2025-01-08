@@ -1,38 +1,38 @@
 export type Distance = {
-  id: Number;
-  dist: Number;
+  id: number;
+  dist: number;
 };
 
 export type Park = {
-  id: Number;
+  id: number;
   name: string;
   district: string;
-  rating: Number;
-  latitude: Number;
-  longitude: Number;
+  rating: number;
+  latitude: number;
+  longitude: number;
   distance: Distance;
 };
 
 export type ParkDetailed = {
-  id: Number;
+  id: number;
   name: string;
   district: string;
-  rating: Number;
-  latitude: Number;
-  longitude: Number;
+  rating: number;
+  latitude: number;
+  longitude: number;
   distance: Distance;
   pluses: Feature[];
   minuses: Feature[];
 };
 
 export type Feature = {
-  id: Number;
+  id: number;
   description: string;
 };
 
 export type Point = {
-  latitude: Number;
-  longitude: Number;
+  latitude: number;
+  longitude: number;
 };
 
 export type SearchingInput = {

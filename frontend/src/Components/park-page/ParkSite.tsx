@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ParkDetailed } from "../../types";
 import Waiting from "../commons/Waiting";
 import ParkForm from "./ParkForm";
+import Map, { defaultLocation } from "../commons/Map";
 
 function ParkSite() {
   const params = useParams();
@@ -52,8 +53,12 @@ function ParkSite() {
           <h2>Dzielnica: {park?.district}</h2>
           <h2>Ocena: {park?.rating.toString()}</h2>
           <div>
-            <p>Szerokość geograficzna: {park?.latitude.toString()}</p>
-            <p>Długość geograficzna: {park?.longitude.toString()}</p>
+            <Map
+              markerPosition={
+                park ? [park.latitude, park.longitude] : defaultLocation
+              }
+              setMarkerPosition={(value) => {}}
+            />
           </div>
           <h4>Plusy:</h4>
           <ul>
