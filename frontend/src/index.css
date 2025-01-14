@@ -36,3 +36,15 @@ li {
   margin-left: 20px;
   background-color: lightcoral;
 }
+
+.wrongInput {
+  background-color: lightcoral;
+}
+
+p {
+  text-align: center;
+}
+
+.center {
+  text-align: center;
+}

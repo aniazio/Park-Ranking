@@ -1,6 +1,7 @@
 package pl.aniazio.stronaRankingParkow.controller;
 
 import jakarta.persistence.AttributeOverride;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import pl.aniazio.stronaRankingParkow.entities.Park;
@@ -22,15 +23,14 @@ public class ParkDetailedController {
     }
 
     @PutMapping("/{id}")
-    public int updateParkDetailed(@PathVariable int id, @RequestBody ParkDetailed parkDetailed) {
+    public ParkDetailed updateParkDetailed(@PathVariable int id, @RequestBody @Valid ParkDetailed parkDetailed) {
         service.updateParkDetailed(id, parkDetailed);
-        return id;
+        return parkDetailed;
     }
 
     @PostMapping()
-    public int saveParkDetailed(@RequestBody ParkDetailed parkDetailed) {
-        ParkDetailed returned = service.saveParkDetailed(parkDetailed);
-        return returned.getId();
+    public ParkDetailed saveParkDetailed(@RequestBody @Valid ParkDetailed parkDetailed) {
+        return service.saveParkDetailed(parkDetailed);
     }
 
     @DeleteMapping("/{id}")

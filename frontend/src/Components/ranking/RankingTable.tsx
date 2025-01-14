@@ -5,9 +5,18 @@ import { SearchingInput } from "../../types";
 import Waiting from "../commons/Waiting";
 import { Link } from "react-router-dom";
 
-function RankingTable({ searchingInput }: { searchingInput: SearchingInput }) {
+let parksFromServer: Park[] = [];
+
+function RankingTable({
+  searchingInput,
+  filter,
+}: {
+  searchingInput: SearchingInput;
+  filter: string | null;
+}) {
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [parks, setParks] = useState<Park[]>([]);
+  const [isError, setError] = useState<boolean>(false);
 
   useEffect(() => {
     async function fetchParks() {
@@ -23,19 +32,46 @@ function RankingTable({ searchingInput }: { searchingInput: SearchingInput }) {
           `long=${searchingInput.point.longitude}&` +
           `weight=${searchingInput.weight}`;
       }
-      const response = await fetch(url);
-      const resData: Park[] = await response.json();
-      setParks(resData);
-      setIsFetching(false);
+      fetch(url)
+        .then(async (response) => {
+          if (response.status === 200) {
+            const resData: Park[] = await response.json();
+            parksFromServer = resData;
+            setParks(filterParks(resData));
+          } else {
+            setError(true);
+          }
+          setIsFetching(false);
+        })
+        .catch(() => {
+          setError(true);
+          setIsFetching(false);
+        });
     }
 
     fetchParks();
   }, [searchingInput]);
 
+  function filterParks(unfiltered: Park[]) {
+    let filtered: Park[] = [...unfiltered];
+    if (filter) {
+      filtered = unfiltered.filter(
+        (elem) =>
+          elem.name.toLowerCase().indexOf(filter) >= 0 ||
+          elem.district.toLowerCase().indexOf(filter) >= 0
+      );
+    }
+    return filtered;
+  }
+
+  useEffect(() => {
+    setParks(filterParks(parksFromServer));
+  }, [filter]);
+
   return (
     <>
-      {!isFetching || <Waiting />}
-      {isFetching || (
+      {isFetching && <Waiting />}
+      {!isFetching && !isError && (
         <table>
           <thead>
             <tr>
@@ -59,6 +95,7 @@ function RankingTable({ searchingInput }: { searchingInput: SearchingInput }) {
           </tbody>
         </table>
       )}
+      {isError && <p>Ładowanie danych z serwera nie powiodło się</p>}
     </>
   );
 }

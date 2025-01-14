@@ -58,6 +58,7 @@ function ParkSite() {
                 park ? [park.latitude, park.longitude] : defaultLocation
               }
               setMarkerPosition={(value) => {}}
+              changeError={() => {}}
             />
           </div>
           <h4>Plusy:</h4>
@@ -79,7 +80,7 @@ function ParkSite() {
         </>
       )}
       {isFetching || !isEditing || (
-        <ParkForm park={park} setEditing={setIsEditing} />
+        <ParkForm park={park} setEditing={setIsEditing} setPark={setPark} />
       )}
     </>
   );

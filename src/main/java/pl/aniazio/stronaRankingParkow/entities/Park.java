@@ -1,7 +1,13 @@
 package pl.aniazio.stronaRankingParkow.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+import pl.aniazio.stronaRankingParkow.service.Localization;
+
+import java.math.BigDecimal;
 
 @Data
 @AllArgsConstructor
@@ -16,10 +22,14 @@ public class Park {
     private int id;
 
     @Column(name="name")
+    @NotBlank
     private String name;
     @Column(name="district")
+    @NotBlank
     private String district;
     @Column(name="rating")
+    @Max(10)
+    @Min(0)
     private double rating;
     @Column(name="latitude")
     private double latitude;

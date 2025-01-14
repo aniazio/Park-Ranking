@@ -1,4 +1,4 @@
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { ParkDetailed } from "../../types";
 import Input from "./Input";
 import "./ParkForm.module.css";
@@ -18,12 +18,16 @@ type stateInputsCount = {
 function ParkForm({
   park,
   setEditing,
+  setPark,
 }: {
   park: ParkDetailed | null;
   setEditing: (value: boolean) => void;
+  setPark: (value: ParkDetailed | null) => void;
 }) {
   const navigate = useNavigate();
   const submitButton = useRef<HTMLButtonElement | null>(null);
+  const [numberOfErrors, setNumberOfErrors] = useState<number>(0);
+  const [error, setError] = useState<string>("");
   const [position, setPosition] = useState<LatLngTuple>(
     park ? [park.latitude, park.longitude] : defaultLocation
   );
@@ -74,9 +78,17 @@ function ParkForm({
       },
     })
       .then(async (response) => {
-        const data = await response.json();
-        navigate("/" + data);
-        setEditing(false);
+        if (response.status === 200) {
+          setError("");
+          const responseData: ParkDetailed = await response.json();
+          navigate("/" + responseData.id);
+          setPark(responseData);
+          setEditing(false);
+        } else {
+          setError(
+            "Zgłoszenie nie powiodło się. Sprawdź poprawność formularza i wyślij ponownie."
+          );
+        }
       })
       .finally(() => {
         submitButton.current?.removeAttribute("disabled");
@@ -103,14 +115,50 @@ function ParkForm({
     setInputsCount(newState);
   }
 
+  useEffect(() => {
+    if (numberOfErrors > 0) {
+      submitButton.current?.setAttribute("disabled", "true");
+    } else {
+      submitButton.current?.removeAttribute("disabled");
+    }
+  }, [numberOfErrors]);
+
+  function changeError(increase: boolean) {
+    const current = numberOfErrors;
+    if (increase) {
+      setNumberOfErrors(current + 1);
+    } else {
+      setNumberOfErrors(current - 1);
+    }
+  }
+
   return (
     <form onSubmit={handleSubmit}>
-      <Input namePl="Nazwa parku" nameEng="name" park={park} />
-      <Input namePl="Dzielnica" nameEng="district" park={park} />
-      <Input namePl="Ocena" nameEng="rating" park={park} />
+      <Input
+        namePl="Nazwa parku"
+        nameEng="name"
+        park={park}
+        changeError={changeError}
+      />
+      <Input
+        namePl="Dzielnica"
+        nameEng="district"
+        park={park}
+        changeError={changeError}
+      />
+      <Input
+        namePl="Ocena"
+        nameEng="rating"
+        park={park}
+        changeError={changeError}
+      />
       {/* <Input namePl="Szerokość geograficzna" nameEng="latitude" park={park} />
       <Input namePl="Długość geograficzna" nameEng="longitude" park={park} /> */}
-      <Map markerPosition={position} setMarkerPosition={setPosition} />
+      <Map
+        markerPosition={position}
+        setMarkerPosition={setPosition}
+        changeError={changeError}
+      />
       <FeaturesInput
         isPositive={true}
         inputsCount={inputsCount.pluses}
@@ -126,6 +174,7 @@ function ParkForm({
       <button type="submit" ref={submitButton}>
         Zapisz
       </button>
+      {error.length !== 0 && <p>{error}</p>}
     </form>
   );
 }
